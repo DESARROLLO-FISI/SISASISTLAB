@@ -14,12 +14,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.sistemas.sisasistlab.domain.CursoPeriodo;
 import pe.edu.sistemas.sisasistlab.domain.Docente;
+import pe.edu.sistemas.sisasistlab.domain.LaboratorioAsist;
 import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 import pe.edu.sistemas.sisasistlab.domain.Periodo;
+import pe.edu.sistemas.sisasistlab.model.CursoModel;
+import pe.edu.sistemas.sisasistlab.repository.AulaRepository;
 import pe.edu.sistemas.sisasistlab.repository.CursoPeriodoRepository;
 import pe.edu.sistemas.sisasistlab.repository.DocenteRepository;
 import pe.edu.sistemas.sisasistlab.repository.LaboratorioDispRepository;
 import pe.edu.sistemas.sisasistlab.repository.PeriodoRepository;
+import pe.edu.sistemas.sisasistlab.service.CursoService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +31,9 @@ import pe.edu.sistemas.sisasistlab.repository.PeriodoRepository;
 public class SisasistlabApplicationTests {
 	
 	protected final Log logger = LogFactory.getLog(SisasistlabApplicationTests.class);
+	
+	@Autowired
+	AulaRepository aulaRepTest;
 	
 	@Autowired
 	DocenteRepository docRepTest;
@@ -39,6 +46,9 @@ public class SisasistlabApplicationTests {
 	
 	@Autowired
 	LaboratorioDispRepository labDispRepTest;
+	
+	@Autowired
+	CursoService cursoServTest;
 
 	@Test
 	@Ignore
@@ -107,6 +117,7 @@ public class SisasistlabApplicationTests {
 	}
 	
 	@Test
+	@Ignore
 	public void listaLaboratoriosDisp() {
 		List<LaboratorioDisp> listLabDisp = labDispRepTest.obtenerLaboratoriosDisponibles();
 		
@@ -120,5 +131,21 @@ public class SisasistlabApplicationTests {
 		
 		
 	}
+	
+	@Test
+	public void listaCursoModelPorDocente() {
+		List<CursoModel> listCursoModel = cursoServTest.obtenerListaCursosPeriodoxDocente(1);
+		
+		logger.info("MOSTRAR LISTA CURSOS POR DOCENTE");
+		for(CursoModel lcm: listCursoModel){
+			logger.info("----");
+			logger.info(lcm.toString());
+			
+		}
+		logger.info("TAMAÑO DE LA LISTA: " + listCursoModel.size());
+		
+	}
+	
+	
 
 }
