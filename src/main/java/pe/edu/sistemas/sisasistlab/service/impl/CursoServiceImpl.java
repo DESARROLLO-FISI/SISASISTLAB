@@ -25,7 +25,7 @@ public class CursoServiceImpl implements CursoService {
 	public CursoModel convertirCursoPeriodoACursoModel(CursoPeriodo cursoPeriodo){
 		CursoModel cursoModel = new CursoModel();
 		//Obtener "Nombre Curso - Escuela"
-		String nombrePlan = cursoPeriodo.ge
+		String nombrePlan = cursoPeriodo.getCursoConjunto().getCursoBase().getPlan().getPlanNombre();
 		String cursoNombreEscuela = cursoPeriodo.getCursoPeriodoNombre() + nombrePlan.substring(4);
 		
 		//
