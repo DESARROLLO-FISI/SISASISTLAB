@@ -15,11 +15,12 @@ public class SisasistlabApplication extends SpringBootServletInitializer {
 		return application.sources(SisasistlabApplication.class);
 	}
 	
+	/*
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SisasistlabApplication.class, args);
