@@ -1,5 +1,6 @@
 package pe.edu.sistemas.sisasistlab.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -37,6 +38,7 @@ public class RegistroController {
 	
 	protected final Log logger = LogFactory.getLog(RegistroController.class);
 	
+	Integer iddocenteg;
 	List<CursoModel> listcursom = null ;
 	
 	@ModelAttribute("listaLaboratorioDisp")
@@ -55,14 +57,34 @@ public class RegistroController {
 		return "/registro";
 	}
 	
+	@GetMapping("/")
+	public String vistaInicial(Model model){
+		
+		// FALTA OBTENER DATA SOBRE LABORATORIOS ABIERTOS 
+		return "/index";
+	}
+	
 	@RequestMapping(value="/cursos", method = RequestMethod.POST)
 	public @ResponseBody List<CursoModel> buscarCursosDocente(ModelMap model, @RequestBody String iddocente){
 		
 		logger.info("ID del docente seleccionado: " + iddocente.replaceAll("\"",""));
 		
-		listcursom = curservice.obtenerListaCursosPeriodoxDocente(Integer.parseInt(iddocente.replaceAll("\"","")));
+		iddocenteg = Integer.parseInt(iddocente.replaceAll("\"",""));
+		listcursom = curservice.obtenerListaCursosPeriodoxDocente(iddocenteg);
 		
 		return listcursom;
+	}
+	
+	@RequestMapping(value="/laboratorio", method = RequestMethod.POST)
+	public @ResponseBody Integer buscarLaboratorioCurso(ModelMap model, @RequestBody String idgrupocurso){
+		
+		logger.info("ID del curso-grupo seleccionado: " + idgrupocurso.replaceAll("\"","") + " ID DOCENTE: " + iddocenteg) ;
+		
+
+		LaboratorioDisp labdisp = labdispservice.obtenerLaboratorioxGrupoyDocente(Integer.parseInt(idgrupocurso.replaceAll("\"","")), iddocenteg);
+		//if(labdisp!=null)
+			//logger.info(labdisp.toString());
+		return labdisp.getIdLaboratorioDisp();
 	}
 	
 }

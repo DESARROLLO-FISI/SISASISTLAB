@@ -251,4 +251,13 @@ public class Persona implements java.io.Serializable {
 		this.docentes_1 = docentes_1;
 	}
 
+	@Override
+	public String toString() {
+		return "Persona [idPersona=" + idPersona + ", personaCodigo=" + personaCodigo + ", personaNombre="
+				+ personaNombre + ", personaAppaterno=" + personaAppaterno + ", personaApmaterno=" + personaApmaterno
+				+ "]";
+	}
+	
+	
+
 }

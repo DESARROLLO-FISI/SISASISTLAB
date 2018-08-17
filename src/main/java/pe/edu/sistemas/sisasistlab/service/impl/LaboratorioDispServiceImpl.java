@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pe.edu.sistemas.sisasistlab.domain.Aula;
 import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 import pe.edu.sistemas.sisasistlab.repository.LaboratorioDispRepository;
 import pe.edu.sistemas.sisasistlab.service.LaboratorioDispService;
@@ -19,6 +20,13 @@ public class LaboratorioDispServiceImpl implements LaboratorioDispService{
 	@Override
 	public List<LaboratorioDisp> obtenerListaLaboratoriosDisp() {
 		return labDispRep.obtenerLaboratoriosDisponibles();
+	}
+	
+	@Override
+	public LaboratorioDisp obtenerLaboratorioxGrupoyDocente(Integer idgrupo, Integer iddocente){
+		Aula aula = labDispRep.obtenerLaboratorioxGrupoyDocente(idgrupo, iddocente);
+		
+		return labDispRep.findByAula(aula);
 	}
 
 }

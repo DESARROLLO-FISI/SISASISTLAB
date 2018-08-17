@@ -104,4 +104,11 @@ public class CursoPeriodo implements java.io.Serializable {
 		this.grupos = grupos;
 	}
 
+	@Override
+	public String toString() {
+		return "CursoPeriodo [cursoPeriodoNombre=" + cursoPeriodoNombre + "]";
+	}
+	
+	
+
 }

@@ -111,4 +111,10 @@ public class Aula implements java.io.Serializable {
 		this.horarioClases = horarioClases;
 	}
 
+	@Override
+	public String toString() {
+		return "Aula [nombre=" + nombre + "]";
+	}
+
+	
 }

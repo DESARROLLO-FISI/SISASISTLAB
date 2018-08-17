@@ -12,9 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.sistemas.sisasistlab.domain.Aula;
 import pe.edu.sistemas.sisasistlab.domain.CursoPeriodo;
 import pe.edu.sistemas.sisasistlab.domain.Docente;
-import pe.edu.sistemas.sisasistlab.domain.LaboratorioAsist;
 import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 import pe.edu.sistemas.sisasistlab.domain.Periodo;
 import pe.edu.sistemas.sisasistlab.model.CursoModel;
@@ -24,6 +24,7 @@ import pe.edu.sistemas.sisasistlab.repository.DocenteRepository;
 import pe.edu.sistemas.sisasistlab.repository.LaboratorioDispRepository;
 import pe.edu.sistemas.sisasistlab.repository.PeriodoRepository;
 import pe.edu.sistemas.sisasistlab.service.CursoService;
+import pe.edu.sistemas.sisasistlab.service.LaboratorioDispService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,6 +50,9 @@ public class SisasistlabApplicationTests {
 	
 	@Autowired
 	CursoService cursoServTest;
+	
+	@Autowired
+	LaboratorioDispService labDispServTest;
 
 	@Test
 	@Ignore
@@ -89,11 +93,11 @@ public class SisasistlabApplicationTests {
 		Periodo per = perRepTest.findFirstByOrderByIdperiodoDesc();
 		List<Docente> listDoc = docRepTest.obtenerDocentesxPeriodoActual(per.getPeriodoNombre());
 		logger.info("MOSTRAR LISTA DE DOCENTE ACTUAL");
-		/*for(Docente d: listDoc){
+		for(Docente d: listDoc){
 			logger.info("----");
 			logger.info(d.getPersona().toString());
 			
-		}*/
+		}
 		logger.info("TAMAÑO DE LA LISTA: " + listDoc.size());
 		
 		
@@ -133,6 +137,7 @@ public class SisasistlabApplicationTests {
 	}
 	
 	@Test
+	@Ignore
 	public void listaCursoModelPorDocente() {
 		List<CursoModel> listCursoModel = cursoServTest.obtenerListaCursosPeriodoxDocente(1);
 		
@@ -145,6 +150,34 @@ public class SisasistlabApplicationTests {
 		logger.info("TAMAÑO DE LA LISTA: " + listCursoModel.size());
 		
 	}
+	
+	
+	@Test
+	@Ignore
+	public void obtenerLaboratorioxCursoyDocente() {
+		Aula aula_grupo = labDispRepTest.obtenerLaboratorioxGrupoyDocente(3662, 43);
+		
+		
+		LaboratorioDisp labdisp = labDispRepTest.findByAula(aula_grupo);
+		
+		logger.info("MOSTRAR LABORATORIO DE UN DOCENTE Y CURSO");
+		
+		logger.info("NOMBRE AULA: " + labdisp.getAula().getNombre());
+		
+	}
+	
+	@Test
+	public void obtenerLaboratorioxCursoyDocenteService() {
+		
+		
+		LaboratorioDisp labdisp = labDispServTest.obtenerLaboratorioxGrupoyDocente(3662, 43);
+		
+		logger.info("MOSTRAR LABORATORIO DE UN DOCENTE Y CURSO");
+		
+		logger.info("NOMBRE AULA: " + labdisp.getAula().getNombre());
+		
+	}
+	
 	
 	
 

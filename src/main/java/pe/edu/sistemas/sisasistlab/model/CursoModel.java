@@ -1,22 +1,22 @@
 package pe.edu.sistemas.sisasistlab.model;
 
 public class CursoModel {
-	Integer idCursoPeriodo;
+	Integer idGrupo;
 	String cursoPeriodoNombre;
 	
-	public CursoModel(Integer idCursoPeriodo, String cursoPeriodoNombre) {
-		this.idCursoPeriodo = idCursoPeriodo;
+	public CursoModel(Integer idGrupo, String cursoPeriodoNombre) {
+		this.idGrupo = idGrupo;
 		this.cursoPeriodoNombre = cursoPeriodoNombre;
 	}
 	
 	public CursoModel(){}
 
-	public Integer getIdCursoPeriodo() {
-		return idCursoPeriodo;
+	public Integer getIdGrupo() {
+		return idGrupo;
 	}
 
-	public void setIdCursoPeriodo(Integer idCursoPeriodo) {
-		this.idCursoPeriodo = idCursoPeriodo;
+	public void setIdGrupo(Integer idCursoPeriodo) {
+		this.idGrupo = idCursoPeriodo;
 	}
 
 	public String getCursoPeriodoNombre() {
@@ -29,7 +29,7 @@ public class CursoModel {
 
 	@Override
 	public String toString() {
-		return "CursoModel [idCursoPeriodo=" + idCursoPeriodo + ", cursoPeriodoNombre=" + cursoPeriodoNombre + "]";
+		return "CursoModel [idGrupo=" + idGrupo + ", cursoPeriodoNombre=" + cursoPeriodoNombre + "]";
 	}
 	
 	

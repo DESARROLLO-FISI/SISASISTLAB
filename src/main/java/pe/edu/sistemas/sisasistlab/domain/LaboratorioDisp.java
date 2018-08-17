@@ -16,14 +16,18 @@ import javax.persistence.Table;
 @Table(name = "laboratorio_disp", catalog = "modelogeneralfisi")
 public class LaboratorioDisp implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idLaboratorioDisp;
 	private Aula aula;
-	private byte laboratorioDispEstado;
+	private String laboratorioDispEstado;
 
 	public LaboratorioDisp() {
 	}
 
-	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, byte laboratorioDispEstado) {
+	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, String laboratorioDispEstado) {
 		this.idLaboratorioDisp = idLaboratorioDisp;
 		this.aula = aula;
 		this.laboratorioDispEstado = laboratorioDispEstado;
@@ -51,12 +55,18 @@ public class LaboratorioDisp implements java.io.Serializable {
 	}
 
 	@Column(name = "LABORATORIO_DISP_ESTADO", nullable = false)
-	public byte getLaboratorioDispEstado() {
+	public String getLaboratorioDispEstado() {
 		return this.laboratorioDispEstado;
 	}
 
-	public void setLaboratorioDispEstado(byte laboratorioDispEstado) {
+	public void setLaboratorioDispEstado(String laboratorioDispEstado) {
 		this.laboratorioDispEstado = laboratorioDispEstado;
 	}
 
+	@Override
+	public String toString() {
+		return "LaboratorioDisp [aula=" + aula + ", laboratorioDispEstado=" + laboratorioDispEstado + "]";
+	}
+
+	
 }

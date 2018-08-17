@@ -6,6 +6,8 @@ import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 
 public interface LaboratorioDispService {
 	
-	public abstract List<LaboratorioDisp> obtenerListaLaboratoriosDisp(); 
+	public abstract List<LaboratorioDisp> obtenerListaLaboratoriosDisp();
+
+	public abstract LaboratorioDisp obtenerLaboratorioxGrupoyDocente(Integer idgrupo, Integer iddocente); 
 	
 }
