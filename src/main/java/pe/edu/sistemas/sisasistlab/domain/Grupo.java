@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24/08/2018 05:00:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +24,7 @@ public class Grupo implements java.io.Serializable {
 	private Integer idgrupo;
 	private CursoPeriodo cursoPeriodo;
 	private int grupoNumero;
+	private Set<LaboratorioAsist> laboratorioAsists = new HashSet<LaboratorioAsist>(0);
 	private Set<HorarioClase> horarioClases = new HashSet<HorarioClase>(0);
 
 	public Grupo() {
@@ -34,9 +35,11 @@ public class Grupo implements java.io.Serializable {
 		this.grupoNumero = grupoNumero;
 	}
 
-	public Grupo(CursoPeriodo cursoPeriodo, int grupoNumero, Set<HorarioClase> horarioClases) {
+	public Grupo(CursoPeriodo cursoPeriodo, int grupoNumero, Set<LaboratorioAsist> laboratorioAsists,
+			Set<HorarioClase> horarioClases) {
 		this.cursoPeriodo = cursoPeriodo;
 		this.grupoNumero = grupoNumero;
+		this.laboratorioAsists = laboratorioAsists;
 		this.horarioClases = horarioClases;
 	}
 
@@ -69,6 +72,15 @@ public class Grupo implements java.io.Serializable {
 
 	public void setGrupoNumero(int grupoNumero) {
 		this.grupoNumero = grupoNumero;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
+	public Set<LaboratorioAsist> getLaboratorioAsists() {
+		return this.laboratorioAsists;
+	}
+
+	public void setLaboratorioAsists(Set<LaboratorioAsist> laboratorioAsists) {
+		this.laboratorioAsists = laboratorioAsists;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")

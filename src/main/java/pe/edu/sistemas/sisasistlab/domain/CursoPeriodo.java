@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24/08/2018 05:00:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +25,6 @@ public class CursoPeriodo implements java.io.Serializable {
 	private CursoConjunto cursoConjunto;
 	private Periodo periodo;
 	private String cursoPeriodoNombre;
-	private Set<LaboratorioAsist> laboratorioAsists = new HashSet<LaboratorioAsist>(0);
 	private Set<Grupo> grupos = new HashSet<Grupo>(0);
 
 	public CursoPeriodo() {
@@ -36,12 +35,10 @@ public class CursoPeriodo implements java.io.Serializable {
 		this.periodo = periodo;
 	}
 
-	public CursoPeriodo(CursoConjunto cursoConjunto, Periodo periodo, String cursoPeriodoNombre,
-			Set<LaboratorioAsist> laboratorioAsists, Set<Grupo> grupos) {
+	public CursoPeriodo(CursoConjunto cursoConjunto, Periodo periodo, String cursoPeriodoNombre, Set<Grupo> grupos) {
 		this.cursoConjunto = cursoConjunto;
 		this.periodo = periodo;
 		this.cursoPeriodoNombre = cursoPeriodoNombre;
-		this.laboratorioAsists = laboratorioAsists;
 		this.grupos = grupos;
 	}
 
@@ -87,15 +84,6 @@ public class CursoPeriodo implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cursoPeriodo")
-	public Set<LaboratorioAsist> getLaboratorioAsists() {
-		return this.laboratorioAsists;
-	}
-
-	public void setLaboratorioAsists(Set<LaboratorioAsist> laboratorioAsists) {
-		this.laboratorioAsists = laboratorioAsists;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cursoPeriodo")
 	public Set<Grupo> getGrupos() {
 		return this.grupos;
 	}
@@ -103,12 +91,5 @@ public class CursoPeriodo implements java.io.Serializable {
 	public void setGrupos(Set<Grupo> grupos) {
 		this.grupos = grupos;
 	}
-
-	@Override
-	public String toString() {
-		return "CursoPeriodo [cursoPeriodoNombre=" + cursoPeriodoNombre + "]";
-	}
-	
-	
 
 }

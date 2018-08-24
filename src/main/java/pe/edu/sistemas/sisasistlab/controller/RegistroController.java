@@ -1,6 +1,6 @@
 package pe.edu.sistemas.sisasistlab.controller;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.edu.sistemas.sisasistlab.domain.Docente;
+import pe.edu.sistemas.sisasistlab.domain.LaboratorioAsist;
 import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 import pe.edu.sistemas.sisasistlab.model.CursoModel;
+import pe.edu.sistemas.sisasistlab.model.LaboratorioAsistModel;
 import pe.edu.sistemas.sisasistlab.model.Search;
 import pe.edu.sistemas.sisasistlab.service.CursoService;
 import pe.edu.sistemas.sisasistlab.service.DocenteService;
+import pe.edu.sistemas.sisasistlab.service.LaboratorioAsistService;
 import pe.edu.sistemas.sisasistlab.service.LaboratorioDispService;
 
 @Controller
@@ -36,6 +39,9 @@ public class RegistroController {
 	@Autowired
 	public LaboratorioDispService labdispservice;
 	
+	@Autowired
+	public LaboratorioAsistService labasistservice;
+	
 	protected final Log logger = LogFactory.getLog(RegistroController.class);
 	
 	Integer iddocenteg;
@@ -45,6 +51,11 @@ public class RegistroController {
 	public List<LaboratorioDisp> listaLaboratorioDisp(){		
 		List<LaboratorioDisp> listlabdisp = labdispservice.obtenerListaLaboratoriosDisp();	
 		return listlabdisp;
+	}
+	@ModelAttribute("LaboratorioAsist")
+	public LaboratorioAsistModel laboratorioAsist(){		
+		LaboratorioAsistModel laboratorioAsist = new LaboratorioAsistModel();	
+		return laboratorioAsist;
 	}
 	
 	@GetMapping("/registro")
@@ -87,4 +98,13 @@ public class RegistroController {
 		return labdisp.getIdLaboratorioDisp();
 	}
 	
+	@RequestMapping(value="/guardarAperturaLab", method = RequestMethod.POST)
+	public String agregarLaboratorioAsist(ModelMap model, 
+			@ModelAttribute("LaboratorioAsist") LaboratorioAsistModel laboratorioAsist){
+
+		labasistservice.insertarLaboratorioAsist(laboratorioAsist);//ingresar a la bd
+		
+		
+		return "/registro";
+	}
 }

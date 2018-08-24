@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24/08/2018 05:00:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;

@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24/08/2018 05:00:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -250,14 +250,5 @@ public class Persona implements java.io.Serializable {
 	public void setDocentes_1(Set<Docente> docentes_1) {
 		this.docentes_1 = docentes_1;
 	}
-
-	@Override
-	public String toString() {
-		return "Persona [idPersona=" + idPersona + ", personaCodigo=" + personaCodigo + ", personaNombre="
-				+ personaNombre + ", personaAppaterno=" + personaAppaterno + ", personaApmaterno=" + personaApmaterno
-				+ "]";
-	}
-	
-	
 
 }

@@ -29,4 +29,10 @@ public class LaboratorioDispServiceImpl implements LaboratorioDispService{
 		return labDispRep.findByAula(aula);
 	}
 
+	@Override
+	public LaboratorioDisp obtenerLaboratorioDispxId(Integer id) {
+		LaboratorioDisp labdisp=labDispRep.findByIdLaboratorioDisp(id);
+		return labdisp;
+	}
+
 }

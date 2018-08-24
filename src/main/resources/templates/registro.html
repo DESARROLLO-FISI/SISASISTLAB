@@ -11,12 +11,12 @@
 
 
 	<div class="container">
-		<form th:object="${search}" th:action="@{/guardarAperturaLab}" method="POST">
+		<form th:object="${LaboratorioAsist}" th:action="@{/guardarAperturaLab}" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="periodoResIni">Lista Docentes</label> 
 					<select
-						class="form-control has-feedback-left" id="iddocente"  >
+						class="form-control has-feedback-left" id="iddocente" th:field="*{iddocente}" >
 						<option th:each="doc : ${listaDocente}"
 							th:text="${doc.persona.personaNombre}"
 							th:value="${doc.iddocente}"></option>
@@ -28,22 +28,29 @@
 				</div-->
 			
 
+			
+
+			<div class="form-group col-md-6">
+				<label>Lista Cursos</label> 
+				<select class="form-control has-feedback-left"  id="listCurso" th:field="*{idcurso}">
+					<!-- option th:each="curso : ${listaCursos}"
+						th:text="${curso.cursoPeriodoNombre}"
+						th:value="${curso.idCursoPeriodo}"></option-->
+				</select>
+			</div>
 			<div class="form-group col-md-6">
 				<label>Lista Laboratorios</label> <select
-					class="form-control has-feedback-left"  id="listLaboratorio">
+					class="form-control has-feedback-left"  id="listLaboratorio" th:field="*{aulaIdaula}">
 					<option th:each="labdisp : ${listaLaboratorioDisp}"
 						th:text="${labdisp.aula.nombre}"
 						th:value="${labdisp.idLaboratorioDisp}"></option>
 				</select>
 			</div>
-
 			<div class="form-group col-md-6">
-				<label>Lista Cursos</label> <select
-					class="form-control has-feedback-left"  id="listCurso">
-					<!-- option th:each="curso : ${listaCursos}"
-						th:text="${curso.cursoPeriodoNombre}"
-						th:value="${curso.idCursoPeriodo}"></option-->
-				</select>
+				<label>Involucrado</label> 
+					<input type="text" class="form-control has-feedback-left" 
+					id="involucrado" placeholder="Inserte el nombre del involucrado"
+					 th:field="*{InvolucradoApertura}">
 			</div>
 			
 			<div class="col-md-2">

@@ -10,4 +10,5 @@ public interface LaboratorioDispService {
 
 	public abstract LaboratorioDisp obtenerLaboratorioxGrupoyDocente(Integer idgrupo, Integer iddocente); 
 	
+	public abstract LaboratorioDisp obtenerLaboratorioDispxId(Integer id);
 }

@@ -1,9 +1,9 @@
 package pe.edu.sistemas.sisasistlab.service;
 
-import pe.edu.sistemas.sisasistlab.domain.LaboratorioAsist;
+import pe.edu.sistemas.sisasistlab.model.LaboratorioAsistModel;
 
 public interface LaboratorioAsistService {
 
-	public abstract boolean insertarLaboratorioAsist(LaboratorioAsist labAsist);
+	public abstract boolean insertarLaboratorioAsist(LaboratorioAsistModel labAsistModel);
 
 }

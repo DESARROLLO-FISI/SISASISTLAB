@@ -16,4 +16,5 @@ public interface GrupoRepository extends JpaRepository<Grupo, Integer> {
 			+ "	WHERE hc.horarioClasePeriodo = :periodoActual AND hc.docente.iddocente = :idDocente")
 	List<Grupo> obtenerGruposxDocente(@Param("periodoActual") String PeriodoActual, @Param("idDocente") Integer idDocente);
 	
+	public abstract Grupo findByidgrupo (Integer idGrupo);
 }

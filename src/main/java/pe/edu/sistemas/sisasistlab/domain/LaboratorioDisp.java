@@ -1,12 +1,15 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24/08/2018 05:00:13 PM by Hibernate Tools 4.3.1.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,21 +19,25 @@ import javax.persistence.Table;
 @Table(name = "laboratorio_disp", catalog = "modelogeneralfisi")
 public class LaboratorioDisp implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int idLaboratorioDisp;
 	private Aula aula;
 	private String laboratorioDispEstado;
+	private Set<LaboratorioAsist> laboratorioAsists = new HashSet<LaboratorioAsist>(0);
 
 	public LaboratorioDisp() {
 	}
 
-	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, String laboratorioDispEstado) {
+	public LaboratorioDisp(int idLaboratorioDisp, Aula aula) {
+		this.idLaboratorioDisp = idLaboratorioDisp;
+		this.aula = aula;
+	}
+
+	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, String laboratorioDispEstado,
+			Set<LaboratorioAsist> laboratorioAsists) {
 		this.idLaboratorioDisp = idLaboratorioDisp;
 		this.aula = aula;
 		this.laboratorioDispEstado = laboratorioDispEstado;
+		this.laboratorioAsists = laboratorioAsists;
 	}
 
 	@Id
@@ -54,7 +61,7 @@ public class LaboratorioDisp implements java.io.Serializable {
 		this.aula = aula;
 	}
 
-	@Column(name = "LABORATORIO_DISP_ESTADO", nullable = false)
+	@Column(name = "LABORATORIO_DISP_ESTADO", length = 1)
 	public String getLaboratorioDispEstado() {
 		return this.laboratorioDispEstado;
 	}
@@ -63,10 +70,13 @@ public class LaboratorioDisp implements java.io.Serializable {
 		this.laboratorioDispEstado = laboratorioDispEstado;
 	}
 
-	@Override
-	public String toString() {
-		return "LaboratorioDisp [aula=" + aula + ", laboratorioDispEstado=" + laboratorioDispEstado + "]";
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "laboratorioDisp")
+	public Set<LaboratorioAsist> getLaboratorioAsists() {
+		return this.laboratorioAsists;
 	}
 
-	
+	public void setLaboratorioAsists(Set<LaboratorioAsist> laboratorioAsists) {
+		this.laboratorioAsists = laboratorioAsists;
+	}
+
 }

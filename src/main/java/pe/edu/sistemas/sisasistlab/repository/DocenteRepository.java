@@ -18,4 +18,5 @@ public interface DocenteRepository extends JpaRepository<Docente, Integer>{
 			+ "WHERE hc.horarioClasePeriodo = :periodoActual ")
 	List<Docente>  obtenerDocentesxPeriodoActual(@Param("periodoActual") String periodoActual);
 	
+	
 }

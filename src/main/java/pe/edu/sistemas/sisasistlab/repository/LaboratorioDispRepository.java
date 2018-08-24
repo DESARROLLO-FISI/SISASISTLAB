@@ -21,7 +21,7 @@ public interface LaboratorioDispRepository extends JpaRepository<LaboratorioDisp
 			+ "	WHERE hc.grupo.idgrupo = :idGrupo AND hc.docente.iddocente = :idDocente AND hc.horarioClaseTipo = 'LABORATORIO'")
 	Aula obtenerLaboratorioxGrupoyDocente(@Param("idGrupo") Integer idgrupo, @Param("idDocente") Integer idDocente);
 	
-	
-	
 	LaboratorioDisp findByAula(Aula aula);
+
+	LaboratorioDisp findByIdLaboratorioDisp(int id);
 }
