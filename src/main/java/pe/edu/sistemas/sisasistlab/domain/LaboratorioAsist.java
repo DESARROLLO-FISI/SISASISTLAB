@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24-ago-2018 0:28:55 by Hibernate Tools 4.0.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -20,8 +20,8 @@ import javax.persistence.TemporalType;
 public class LaboratorioAsist implements java.io.Serializable {
 
 	private int idLaboratorioAsist;
-	private CursoPeriodo cursoPeriodo;
 	private Docente docente;
+	private CursoPeriodo cursoPeriodo;
 	private Date laboratorioAsistApertura;
 	private Date laboratorioAsistCierre;
 	private Date laboratorioAsistFecha;
@@ -32,24 +32,24 @@ public class LaboratorioAsist implements java.io.Serializable {
 	public LaboratorioAsist() {
 	}
 
-	public LaboratorioAsist(int idLaboratorioAsist, CursoPeriodo cursoPeriodo, Docente docente,
+	public LaboratorioAsist(int idLaboratorioAsist, Docente docente, CursoPeriodo cursoPeriodo,
 			Date laboratorioAsistApertura, Date laboratorioAsistFecha, int aulaIdaula,
 			String laboratorioAsistInvolucradoApertura) {
 		this.idLaboratorioAsist = idLaboratorioAsist;
-		this.cursoPeriodo = cursoPeriodo;
 		this.docente = docente;
+		this.cursoPeriodo = cursoPeriodo;
 		this.laboratorioAsistApertura = laboratorioAsistApertura;
 		this.laboratorioAsistFecha = laboratorioAsistFecha;
 		this.aulaIdaula = aulaIdaula;
 		this.laboratorioAsistInvolucradoApertura = laboratorioAsistInvolucradoApertura;
 	}
 
-	public LaboratorioAsist(int idLaboratorioAsist, CursoPeriodo cursoPeriodo, Docente docente,
+	public LaboratorioAsist(int idLaboratorioAsist, Docente docente, CursoPeriodo cursoPeriodo,
 			Date laboratorioAsistApertura, Date laboratorioAsistCierre, Date laboratorioAsistFecha, int aulaIdaula,
 			String laboratorioAsistInvolucradoApertura, String laboratorioAsistInvolucradoCierre) {
 		this.idLaboratorioAsist = idLaboratorioAsist;
-		this.cursoPeriodo = cursoPeriodo;
 		this.docente = docente;
+		this.cursoPeriodo = cursoPeriodo;
 		this.laboratorioAsistApertura = laboratorioAsistApertura;
 		this.laboratorioAsistCierre = laboratorioAsistCierre;
 		this.laboratorioAsistFecha = laboratorioAsistFecha;
@@ -70,16 +70,6 @@ public class LaboratorioAsist implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CURSO_IDCURSO", nullable = false)
-	public CursoPeriodo getCursoPeriodo() {
-		return this.cursoPeriodo;
-	}
-
-	public void setCursoPeriodo(CursoPeriodo cursoPeriodo) {
-		this.cursoPeriodo = cursoPeriodo;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DOCENTE_ID_DOCENTE", nullable = false)
 	public Docente getDocente() {
 		return this.docente;
@@ -87,6 +77,16 @@ public class LaboratorioAsist implements java.io.Serializable {
 
 	public void setDocente(Docente docente) {
 		this.docente = docente;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CURSO_IDCURSO", nullable = false)
+	public CursoPeriodo getCursoPeriodo() {
+		return this.cursoPeriodo;
+	}
+
+	public void setCursoPeriodo(CursoPeriodo cursoPeriodo) {
+		this.cursoPeriodo = cursoPeriodo;
 	}
 
 	@Temporal(TemporalType.TIME)

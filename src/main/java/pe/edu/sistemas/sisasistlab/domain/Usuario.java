@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24-ago-2018 0:28:55 by Hibernate Tools 4.0.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,23 +19,23 @@ import javax.persistence.Table;
 public class Usuario implements java.io.Serializable {
 
 	private Integer idUsuario;
-	private Persona persona;
 	private TipoUsuario tipoUsuario;
+	private Persona persona;
 	private Integer usuarioActivo;
 	private int sistemaIdSistema;
 
 	public Usuario() {
 	}
 
-	public Usuario(Persona persona, TipoUsuario tipoUsuario, int sistemaIdSistema) {
-		this.persona = persona;
+	public Usuario(TipoUsuario tipoUsuario, Persona persona, int sistemaIdSistema) {
 		this.tipoUsuario = tipoUsuario;
+		this.persona = persona;
 		this.sistemaIdSistema = sistemaIdSistema;
 	}
 
-	public Usuario(Persona persona, TipoUsuario tipoUsuario, Integer usuarioActivo, int sistemaIdSistema) {
-		this.persona = persona;
+	public Usuario(TipoUsuario tipoUsuario, Persona persona, Integer usuarioActivo, int sistemaIdSistema) {
 		this.tipoUsuario = tipoUsuario;
+		this.persona = persona;
 		this.usuarioActivo = usuarioActivo;
 		this.sistemaIdSistema = sistemaIdSistema;
 	}
@@ -53,16 +53,6 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PERSONA_ID_PERSONA", nullable = false)
-	public Persona getPersona() {
-		return this.persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TIPO_USUARIO_IDTIPO_USUARIO", nullable = false)
 	public TipoUsuario getTipoUsuario() {
 		return this.tipoUsuario;
@@ -70,6 +60,16 @@ public class Usuario implements java.io.Serializable {
 
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PERSONA_ID_PERSONA", nullable = false)
+	public Persona getPersona() {
+		return this.persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	@Column(name = "USUARIO_ACTIVO")

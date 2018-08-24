@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24-ago-2018 0:28:55 by Hibernate Tools 4.0.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,18 +16,14 @@ import javax.persistence.Table;
 @Table(name = "laboratorio_disp", catalog = "modelogeneralfisi")
 public class LaboratorioDisp implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int idLaboratorioDisp;
 	private Aula aula;
-	private String laboratorioDispEstado;
+	private byte laboratorioDispEstado;
 
 	public LaboratorioDisp() {
 	}
 
-	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, String laboratorioDispEstado) {
+	public LaboratorioDisp(int idLaboratorioDisp, Aula aula, byte laboratorioDispEstado) {
 		this.idLaboratorioDisp = idLaboratorioDisp;
 		this.aula = aula;
 		this.laboratorioDispEstado = laboratorioDispEstado;
@@ -55,18 +51,12 @@ public class LaboratorioDisp implements java.io.Serializable {
 	}
 
 	@Column(name = "LABORATORIO_DISP_ESTADO", nullable = false)
-	public String getLaboratorioDispEstado() {
+	public byte getLaboratorioDispEstado() {
 		return this.laboratorioDispEstado;
 	}
 
-	public void setLaboratorioDispEstado(String laboratorioDispEstado) {
+	public void setLaboratorioDispEstado(byte laboratorioDispEstado) {
 		this.laboratorioDispEstado = laboratorioDispEstado;
 	}
 
-	@Override
-	public String toString() {
-		return "LaboratorioDisp [aula=" + aula + ", laboratorioDispEstado=" + laboratorioDispEstado + "]";
-	}
-
-	
 }

@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 	$("#iddocente").change(function(){
+		${"laboratorioAsist.docente.iddocente"} = $("#iddocente").val();
 		$.ajax({
 			 url: '/cursos',    // cambiar: url: /jsonDP para pruebas 
 	         type: 'POST', 
@@ -17,6 +18,7 @@ $(document).ready(function(){
 	         	
 	         },
 	         error : function(xhr, status) {
+	        	 
 	             alert('Disculpe, existio un problema -- '+xhr+" -- "+status);
 	         },		
 		});
@@ -24,6 +26,7 @@ $(document).ready(function(){
 	
 	
 	$("#listCurso").change(function(){
+		${"laboratorioAsist.CursoPeriodo.idcursoPeriodo"} = $("#listCurso").val();
 		$.ajax({
 			 url: '/laboratorio',    // cambiar: url: /jsonDP para pruebas 
 	         type: 'POST', 
@@ -40,4 +43,8 @@ $(document).ready(function(){
 	         },		
 		});
 	});
+	
+	$("#listLaboratorio").change(function(){
+		${"laboratorioAsist.aulaIdaula"} = $("#listLaboratorio").val();
+	});	
 });

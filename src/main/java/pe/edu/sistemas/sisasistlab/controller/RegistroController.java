@@ -1,6 +1,6 @@
 package pe.edu.sistemas.sisasistlab.controller;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.edu.sistemas.sisasistlab.domain.Docente;
+import pe.edu.sistemas.sisasistlab.domain.LaboratorioAsist;
 import pe.edu.sistemas.sisasistlab.domain.LaboratorioDisp;
 import pe.edu.sistemas.sisasistlab.model.CursoModel;
 import pe.edu.sistemas.sisasistlab.model.Search;
 import pe.edu.sistemas.sisasistlab.service.CursoService;
 import pe.edu.sistemas.sisasistlab.service.DocenteService;
+import pe.edu.sistemas.sisasistlab.service.LaboratorioAsistService;
 import pe.edu.sistemas.sisasistlab.service.LaboratorioDispService;
 
 @Controller
@@ -36,6 +38,9 @@ public class RegistroController {
 	@Autowired
 	public LaboratorioDispService labdispservice;
 	
+	@Autowired
+	public LaboratorioAsistService labasistservice;
+	
 	protected final Log logger = LogFactory.getLog(RegistroController.class);
 	
 	Integer iddocenteg;
@@ -47,9 +52,16 @@ public class RegistroController {
 		return listlabdisp;
 	}
 	
+	@ModelAttribute("laboratorioAsist")
+	public LaboratorioAsist LaboratorioAsist(){		
+		LaboratorioAsist laboratorioAsist = new LaboratorioAsist();	
+		return laboratorioAsist;
+	}
+	
 	@GetMapping("/registro")
 	public String vistaRegistro(Model model){
 		List<Docente> listdoc = docservice.obtenerListaDocentePeriodoActual();
+		
 		model.addAttribute("listaDocente", listdoc);
 		model.addAttribute("search", new Search());
 		model.addAttribute("listaCursos", listcursom);
@@ -87,4 +99,19 @@ public class RegistroController {
 		return labdisp.getIdLaboratorioDisp();
 	}
 	
+	@RequestMapping(value="/guardarAperturaLab", method = RequestMethod.POST)
+	public @ResponseBody String guardarLaboratorioAsist(ModelMap model, @RequestBody LaboratorioAsist labAsist) {
+		//Cómo consigo el involucrado?
+		Date FechayHoraActual=new Date();
+		labAsist.setLaboratorioAsistFecha(FechayHoraActual);
+		labAsist.setLaboratorioAsistApertura(FechayHoraActual);
+		labAsist.setLaboratorioAsistInvolucradoApertura(""); 	//Falta el nombre del involucrado
+		
+		boolean exito=labasistservice.insertarLaboratorioAsist(labAsist);
+		if(exito)
+			return "/registro";
+		else
+			return "/error";	//Faltaría crear una vista de error
+		
+	}
 }

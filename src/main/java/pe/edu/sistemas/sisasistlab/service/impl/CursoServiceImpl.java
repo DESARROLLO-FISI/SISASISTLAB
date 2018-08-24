@@ -1,5 +1,6 @@
 package pe.edu.sistemas.sisasistlab.service.impl;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,20 +28,6 @@ public class CursoServiceImpl implements CursoService {
 	PeriodoRepository periodoRep;
 	
 	@Override
-	public CursoModel convertirGrupoACursoModel(Grupo grupo){
-		CursoModel cursoModel = new CursoModel();
-		//Obtener "Nombre Curso - Escuela"
-		String nombrePlan = grupo.getCursoPeriodo().getCursoConjunto().getCursoBase().getPlan().getPlanNombre();
-		String cursoNombreEscuela = grupo.getCursoPeriodo().getCursoPeriodoNombre() + "-Grupo:" + grupo.getGrupoNumero() + nombrePlan.substring(4);
-		
-		//
-		cursoModel.setIdGrupo(grupo.getIdgrupo());
-		cursoModel.setCursoPeriodoNombre(cursoNombreEscuela);
-		
-		return cursoModel;
-	}
-	
-	@Override
 	public List<CursoModel> obtenerListaCursosPeriodoxDocente(Integer idDocente){
 		//Obtener Periodo Actual
 		String periodoActual = periodoRep.findFirstByOrderByIdperiodoDesc().getPeriodoNombre();
@@ -60,7 +47,18 @@ public class CursoServiceImpl implements CursoService {
 		return listCursoModel;
 	}
 	
-	
-	
+	@Override
+	public CursoModel convertirGrupoACursoModel(Grupo grupo){
+		CursoModel cursoModel = new CursoModel();
+		//Obtener "Nombre Curso - Escuela"
+		String nombrePlan = grupo.getCursoPeriodo().getCursoConjunto().getCursoBase().getPlan().getPlanNombre();
+		String cursoNombreEscuela = grupo.getCursoPeriodo().getCursoPeriodoNombre() + "-Grupo:" + grupo.getGrupoNumero() + nombrePlan.substring(4);
+		
+		
+		cursoModel.setIdGrupo(grupo.getIdgrupo());
+		cursoModel.setCursoPeriodoNombre(cursoNombreEscuela);
+		System.out.println(grupo);
+		return cursoModel;
+	}
 	
 }

@@ -1,5 +1,5 @@
 package pe.edu.sistemas.sisasistlab.domain;
-// Generated 13/07/2018 02:11:42 PM by Hibernate Tools 4.3.1.Final
+// Generated 24-ago-2018 0:28:55 by Hibernate Tools 4.0.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,9 +22,9 @@ import javax.persistence.TemporalType;
 public class HorarioClase implements java.io.Serializable {
 
 	private Integer idhorarioClase;
+	private Grupo grupo;
 	private Aula aula;
 	private Docente docente;
-	private Grupo grupo;
 	private Date horaInicio;
 	private Date horaFin;
 	private String aula_1;
@@ -35,18 +35,18 @@ public class HorarioClase implements java.io.Serializable {
 	public HorarioClase() {
 	}
 
-	public HorarioClase(Docente docente, Grupo grupo, String horarioClaseTipo, String horarioClasePeriodo) {
-		this.docente = docente;
+	public HorarioClase(Grupo grupo, Docente docente, String horarioClaseTipo, String horarioClasePeriodo) {
 		this.grupo = grupo;
+		this.docente = docente;
 		this.horarioClaseTipo = horarioClaseTipo;
 		this.horarioClasePeriodo = horarioClasePeriodo;
 	}
 
-	public HorarioClase(Aula aula, Docente docente, Grupo grupo, Date horaInicio, Date horaFin, String aula_1,
+	public HorarioClase(Grupo grupo, Aula aula, Docente docente, Date horaInicio, Date horaFin, String aula_1,
 			Integer dia, String horarioClaseTipo, String horarioClasePeriodo) {
+		this.grupo = grupo;
 		this.aula = aula;
 		this.docente = docente;
-		this.grupo = grupo;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.aula_1 = aula_1;
@@ -68,6 +68,16 @@ public class HorarioClase implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "GRUPO_IDGRUPO", nullable = false)
+	public Grupo getGrupo() {
+		return this.grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AULA_IDAULA")
 	public Aula getAula() {
 		return this.aula;
@@ -85,16 +95,6 @@ public class HorarioClase implements java.io.Serializable {
 
 	public void setDocente(Docente docente) {
 		this.docente = docente;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "GRUPO_IDGRUPO", nullable = false)
-	public Grupo getGrupo() {
-		return this.grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
 	}
 
 	@Temporal(TemporalType.TIME)
